@@ -14,7 +14,8 @@ function FileUpload(props) {
     //save the Image we chose inside the Node Server
     Axios.post('/api/product/uploadImage', formData, config).then((res) => {
       if (res.data.success) {
-        setImages([...Images, res.data.image]);
+        // console.log(res.data.success);
+        setImages([...Images, res.data.filePath]);
         props.refreshFunction([...Images, res.data.image]);
       } else {
         alert('Failed to save the Image in Server');
@@ -64,7 +65,7 @@ function FileUpload(props) {
         }}
       >
         {Images.map((image, index) => (
-          <div onClick={() => onDelete(image)}>
+          <div key={index} onClick={() => onDelete(image)}>
             <img
               style={{ minWidth: '300px', width: '300px', height: '240px' }}
               src={`http://localhost:5000/${image}`}

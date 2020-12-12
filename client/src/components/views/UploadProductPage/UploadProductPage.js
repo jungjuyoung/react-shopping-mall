@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Typography, Button, Form, message, Input, Icon } from 'antd';
 import FileUpload from '../../utils/FileUpload';
+
 const { Title } = Typography;
 const { TextArea } = Input;
 
@@ -62,6 +63,9 @@ function UploadProductPage() {
         <br />
         <label>Prices($)</label>
         <Input onChange={onPriceChange} value={PriceValue} type="number" />
+
+        <br />
+        <br />
         <select onChange={onContinentsSelectChange} value={ContinentValue}>
           {Continents.map((item) => (
             <option key={item.key} value={item.key}>
