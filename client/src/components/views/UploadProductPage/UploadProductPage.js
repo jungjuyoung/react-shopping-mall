@@ -36,8 +36,6 @@ function UploadProductPage() {
     setContinentValue(e.currentTarget.value);
   };
   const updateImages = (newImages) => {
-    console.log(newImages);
-
     setImages(newImages);
   };
 
