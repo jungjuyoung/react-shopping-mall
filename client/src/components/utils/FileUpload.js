@@ -14,7 +14,7 @@ function FileUpload(props) {
     //save the Image we chose inside the Node Server
     Axios.post('/api/product/uploadImage', formData, config).then((res) => {
       if (res.data.success) {
-        // console.log(res.data.success);
+        // console.log(res.data);
         setImages([...Images, res.data.filePath]);
         props.refreshFunction([...Images, res.data.image]);
       } else {
@@ -25,6 +25,7 @@ function FileUpload(props) {
 
   const onDelete = (image) => {
     const currentIndex = Images.indexOf(image);
+    // console.log(`image: ${image}, currentIndex: ${currentIndex}`);
 
     let newImages = [...Images];
     newImages.splice(currentIndex, 1);
