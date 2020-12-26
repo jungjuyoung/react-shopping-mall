@@ -105,7 +105,7 @@ function UploadProductPage(props) {
         </select>
         <br />
         <br />
-        <button type="submit">Submit</button>
+        <Button htmlType="submit">Submit</Button>
       </Form>
     </div>
   );
