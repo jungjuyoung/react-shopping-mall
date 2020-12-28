@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { FaCode } from 'react-icons/fa';
 import axios from 'axios';
-import { Icon, Col, Card, Row } from 'antd';
+import { Icon, Col, Card, Row, Carousel } from 'antd';
 import Meta from 'antd/lib/card/Meta';
+import ImageSlider from '../../utils/ImageSlider';
 
 function LandingPage() {
   const [Products, setProducts] = useState([]);
@@ -22,9 +23,7 @@ function LandingPage() {
 
     return (
       <Col lg={6} md={8} xs={24} key={index}>
-        <Card
-          cover={<img src={`http://localhost:5000/${product.images[0]}`} />}
-        >
+        <Card cover={<ImageSlider images={product.images} />}>
           <Meta title={product.title} description={`$${product.price}`} />
         </Card>
       </Col>
@@ -42,7 +41,13 @@ function LandingPage() {
     //     Thanks For Using This Boiler Plate by John Ahn
     //   </div>
     // </>
-    <div style={{ width: '75%', margin: '3rem auto' }}>
+
+    <div
+      style={{
+        width: '75%',
+        margin: '3rem auto',
+      }}
+    >
       <div style={{ textAlign: 'center' }}>
         <h1>
           Let's Travel Anywhere <Icon type="rocket" />
@@ -50,10 +55,16 @@ function LandingPage() {
       </div>
 
       {/* filter */}
+
+      <Row gutter={[16, 16]}>{renderCards}</Row>
+
       {/* search */}
       {/* cards */}
-      <Row gutter={[16, 16]}>{renderCards}</Row>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div
+        style={{
+          textAlign: 'right',
+        }}
+      >
         <button>더보기</button>
       </div>
     </div>
