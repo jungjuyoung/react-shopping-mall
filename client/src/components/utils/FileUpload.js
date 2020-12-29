@@ -14,9 +14,10 @@ function FileUpload(props) {
     //save the Image we chose inside the Node Server
     Axios.post('/api/product/uploadImage', formData, config).then((res) => {
       if (res.data.success) {
-        // console.log(res.data);
+        console.log('onDrop res.data.image:', res.data.filePath);
+        console.log('onDrop Images', Images);
         setImages([...Images, res.data.filePath]);
-        props.refreshFunction([...Images, res.data.image]);
+        props.refreshFunction([...Images, res.data.filePath]);
       } else {
         alert('Failed to save the Image in Server');
       }
@@ -49,8 +50,6 @@ function FileUpload(props) {
             }}
             {...getRootProps()}
           >
-            {console.log('getRootProps', { ...getRootProps() })}
-            {console.log('getInputProps', { ...getInputProps() })}
             <input {...getInputProps()} />
             <Icon type="plus" style={{ fontSize: '3rem' }} />
           </div>
