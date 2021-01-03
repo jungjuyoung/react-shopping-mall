@@ -8,24 +8,41 @@ import ImageSlider from '../../utils/ImageSlider';
 function LandingPage() {
   const [Products, setProducts] = useState([]);
   const [Skip, setSkip] = useState(0);
-  const [Limit, setLimit] = useState(6);
+  const [Limit, setLimit] = useState(4);
+  const [PostSize, setPostSize] = useState(0);
 
   useEffect(() => {
     let body = {
       Skip,
       Limit,
     };
+    getProducts(body);
+  }, []);
+
+  const getProducts = (body) => {
     axios.post('/api/product/products', body).then((res) => {
       if (res.data.success) {
-        setProducts(res.data.productInfo);
+        if (body.loadMore) {
+          setProducts([...Products, ...res.data.productInfo]);
+        } else {
+          setProducts(res.data.productInfo);
+        }
+        setPostSize(res.data.postSize);
       } else {
         alert('상품들을 가져오는데 실패 했습니다.');
       }
     });
-  }, []);
+  };
 
   const loadeMoreHandler = (e) => {
-    console.log(e);
+    let skip = Skip + Limit;
+    let body = {
+      Skip: skip,
+      Limit,
+      loadMore: true,
+    };
+    getProducts(body);
+    setSkip(skip);
   };
 
   const renderCards = Products.map((product, index) => {
@@ -59,12 +76,15 @@ function LandingPage() {
       {/* cards */}
       <div
         style={{
-          display: 'block',
+          clear: 'both',
+          paddingTop: '10px',
           textAlign: 'center',
         }}
       >
         {/* <button>더보기</button> */}
-        <button onclick={loadeMoreHandler}>더보기</button>
+        {PostSize >= Limit && (
+          <button onClick={loadeMoreHandler}>더보기</button>
+        )}
       </div>
     </div>
   );
