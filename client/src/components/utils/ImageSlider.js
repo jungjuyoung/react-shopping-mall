@@ -14,7 +14,7 @@ function ImageSlider(props) {
                 objectFit: 'cover',
               }}
               src={`http://localhost:5000/${image}`}
-              alt="productImages"
+              alt="productImage"
             />
           </div>
         ))}

@@ -30,45 +30,54 @@ function LandingPage() {
     );
   });
 
-  return (
-    // <>
-    //   <div className="app">
-    //     <FaCode style={{ fontSize: '4rem' }} />
-    //     <br />
-    //     <span style={{ fontSize: '2rem' }}>Let's Start Coding!</span>
-    //   </div>
-    //   <div style={{ float: 'right' }}>
-    //     Thanks For Using This Boiler Plate by John Ahn
-    //   </div>
-    // </>
+  // {
+  //   Products.length > 0 && console.log('있다');
+  //   console.log('없다');
+  // }
 
-    <div
-      style={{
-        width: '75%',
-        margin: '3rem auto',
-      }}
-    >
-      <div style={{ textAlign: 'center' }}>
-        <h1>
-          Let's Travel Anywhere <Icon type="rocket" />
-        </h1>
-      </div>
-
-      {/* filter */}
-
-      <Row gutter={[16, 16]}>{renderCards}</Row>
-
-      {/* search */}
-      {/* cards */}
+  if (Products.length > 0) {
+    return (
       <div
         style={{
-          textAlign: 'right',
+          width: '75%',
+          margin: '3rem auto',
         }}
       >
-        <button>더보기</button>
+        <div style={{ textAlign: 'center' }}>
+          <h1>
+            Let's Travel Anywhere <Icon type="rocket" />
+          </h1>
+        </div>
+
+        {/* filter */}
+
+        <Row gutter={[16, 16]}>{renderCards}</Row>
+
+        {/* search */}
+        {/* cards */}
+        <div
+          style={{
+            textAlign: 'right',
+          }}
+        >
+          <button>더보기</button>
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <>
+        <div className="app">
+          <FaCode style={{ fontSize: '4rem' }} />
+          <br />
+          <span style={{ fontSize: '2rem' }}>Let's Start Coding!</span>
+        </div>
+        <div style={{ float: 'right' }}>
+          Thanks For Using This Boiler Plate by John Ahn
+        </div>
+      </>
+    );
+  }
 }
 
 export default LandingPage;
