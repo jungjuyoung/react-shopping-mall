@@ -2,6 +2,7 @@ import React from 'react';
 import { Carousel } from 'antd';
 
 function ImageSlider(props) {
+  // console.log(`props: ${JSON.stringify(props)}`);
   return (
     <div>
       <Carousel autoplay>

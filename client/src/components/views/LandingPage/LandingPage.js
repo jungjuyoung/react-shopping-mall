@@ -7,9 +7,15 @@ import ImageSlider from '../../utils/ImageSlider';
 
 function LandingPage() {
   const [Products, setProducts] = useState([]);
+  const [Skip, setSkip] = useState(0);
+  const [Limit, setLimit] = useState(6);
 
   useEffect(() => {
-    axios.post('/api/product/products').then((res) => {
+    let body = {
+      Skip,
+      Limit,
+    };
+    axios.post('/api/product/products', body).then((res) => {
       if (res.data.success) {
         setProducts(res.data.productInfo);
       } else {
@@ -18,9 +24,11 @@ function LandingPage() {
     });
   }, []);
 
-  const renderCards = Products.map((product, index) => {
-    console.log('product', product, 'index', index);
+  const loadeMoreHandler = (e) => {
+    console.log(e);
+  };
 
+  const renderCards = Products.map((product, index) => {
     return (
       <Col lg={6} md={8} xs={24} key={index}>
         <Card cover={<ImageSlider images={product.images} />}>
@@ -30,54 +38,36 @@ function LandingPage() {
     );
   });
 
-  // {
-  //   Products.length > 0 && console.log('있다');
-  //   console.log('없다');
-  // }
+  return (
+    <div
+      style={{
+        width: '75%',
+        margin: '3rem auto',
+      }}
+    >
+      <div style={{ textAlign: 'center' }}>
+        <h1>
+          Let's Travel Anywhere <Icon type="rocket" />
+        </h1>
+      </div>
 
-  if (Products.length > 0) {
-    return (
+      {/* filter */}
+
+      <Row gutter={[16, 16]}>{renderCards}</Row>
+
+      {/* search */}
+      {/* cards */}
       <div
         style={{
-          width: '75%',
-          margin: '3rem auto',
+          display: 'block',
+          textAlign: 'center',
         }}
       >
-        <div style={{ textAlign: 'center' }}>
-          <h1>
-            Let's Travel Anywhere <Icon type="rocket" />
-          </h1>
-        </div>
-
-        {/* filter */}
-
-        <Row gutter={[16, 16]}>{renderCards}</Row>
-
-        {/* search */}
-        {/* cards */}
-        <div
-          style={{
-            textAlign: 'right',
-          }}
-        >
-          <button>더보기</button>
-        </div>
+        {/* <button>더보기</button> */}
+        <button onclick={loadeMoreHandler}>더보기</button>
       </div>
-    );
-  } else {
-    return (
-      <>
-        <div className="app">
-          <FaCode style={{ fontSize: '4rem' }} />
-          <br />
-          <span style={{ fontSize: '2rem' }}>Let's Start Coding!</span>
-        </div>
-        <div style={{ float: 'right' }}>
-          Thanks For Using This Boiler Plate by John Ahn
-        </div>
-      </>
-    );
-  }
+    </div>
+  );
 }
 
 export default LandingPage;
