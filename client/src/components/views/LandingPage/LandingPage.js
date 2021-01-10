@@ -4,7 +4,8 @@ import axios from 'axios';
 import { Icon, Col, Card, Row, Button } from 'antd';
 import Meta from 'antd/lib/card/Meta';
 import ImageSlider from '../../utils/ImageSlider';
-
+import CheckBox from './Sections/CheckBox';
+import { continents } from './Sections/Datas';
 function LandingPage() {
   const [Products, setProducts] = useState([]);
   const [Skip, setSkip] = useState(0);
@@ -69,6 +70,11 @@ function LandingPage() {
       </div>
 
       {/* filter */}
+
+      {/* checkbox */}
+      <CheckBox list={continents} />
+
+      {/* Radiobox */}
 
       <Row gutter={[16, 16]}>{renderCards}</Row>
 
