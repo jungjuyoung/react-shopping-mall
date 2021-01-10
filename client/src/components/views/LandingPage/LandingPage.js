@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FaCode } from 'react-icons/fa';
 import axios from 'axios';
-import { Icon, Col, Card, Row } from 'antd';
+import { Icon, Col, Card, Row, Button } from 'antd';
 import Meta from 'antd/lib/card/Meta';
 import ImageSlider from '../../utils/ImageSlider';
 
@@ -83,7 +83,7 @@ function LandingPage() {
       >
         {/* <button>더보기</button> */}
         {PostSize >= Limit && (
-          <button onClick={loadeMoreHandler}>더보기</button>
+          <Button onClick={loadeMoreHandler}>더보기</Button>
         )}
       </div>
     </div>
