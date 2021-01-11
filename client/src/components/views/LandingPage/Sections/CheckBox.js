@@ -4,10 +4,16 @@ const { Panel } = Collapse;
 
 function CheckBox(props) {
   const [Checked, setChecked] = useState([]);
+  console.log(`Checked: ${JSON.stringify(Checked)}`);
 
   const handleToggle = (value) => {
     // 누른것의 index를 구하고
     const currentIndex = Checked.indexOf(value);
+    console.log(
+      `value: ${JSON.stringify(value)} currentIndex: ${JSON.stringify(
+        currentIndex
+      )}`
+    );
 
     // 전체 checked된 State에서 누른 index의 checked가 이미 있다면 빼주고
     const newChecked = [...Checked];
@@ -18,6 +24,7 @@ function CheckBox(props) {
       newChecked.splice(currentIndex, 1);
     }
     setChecked(newChecked);
+    props.handleFilters(newChecked);
   };
   const renderCheckboxLists = () =>
     props.list &&

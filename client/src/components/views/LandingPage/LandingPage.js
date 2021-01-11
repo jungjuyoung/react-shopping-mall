@@ -11,6 +11,10 @@ function LandingPage() {
   const [Skip, setSkip] = useState(0);
   const [Limit, setLimit] = useState(4);
   const [PostSize, setPostSize] = useState(0);
+  const [Filters, setFilters] = useState({
+    continents: [],
+    price: [],
+  });
 
   useEffect(() => {
     let body = {
@@ -56,6 +60,22 @@ function LandingPage() {
     );
   });
 
+  const showFiltersResults = (filters) => {
+    let body = {
+      Skip: 0,
+      Limit,
+      filters,
+    };
+    getProducts(body);
+    setSkip(0);
+  };
+  const handleFilters = (filters, category) => {
+    const newFilters = { ...Filters };
+    newFilters[category] = filters;
+
+    showFiltersResults(newFilters);
+  };
+
   return (
     <div
       style={{
@@ -72,7 +92,10 @@ function LandingPage() {
       {/* filter */}
 
       {/* checkbox */}
-      <CheckBox list={continents} />
+      <CheckBox
+        list={continents}
+        handleFilters={(filters) => handleFilters(filters, 'continents')}
+      />
 
       {/* Radiobox */}
 
