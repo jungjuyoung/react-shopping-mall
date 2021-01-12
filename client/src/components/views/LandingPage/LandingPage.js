@@ -69,6 +69,7 @@ function LandingPage() {
     getProducts(body);
     setSkip(0);
   };
+
   const handleFilters = (filters, category) => {
     const newFilters = { ...Filters };
     newFilters[category] = filters;

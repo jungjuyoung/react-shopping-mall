@@ -56,9 +56,17 @@ router.post('/products', (req, res) => {
   // Products collection에 들어있는 모든 상품 정보 가져오기.
   let limit = req.body.Limit ? parseInt(req.body.Limit) : 10;
   let skip = req.body.Skip ? parseInt(req.body.Skip) : 0;
-  console.log(`route /products limit: ${limit}, skip: ${skip}`);
+  // console.log(`route /products limit: ${limit}, skip: ${skip}`);
+  let findArgs = {};
+  for (let key in req.body.filters) {
+    if (req.body.filters[key].length > 0) {
+      findArgs[key] = req.body.filters[key];
+    }
+  }
 
-  Product.find()
+  console.log(findArgs);
+
+  Product.find(findArgs)
     .populate('writer')
     .skip(skip)
     .limit(limit)
