@@ -64,7 +64,7 @@ router.post('/products', (req, res) => {
     }
   }
 
-  console.log(findArgs);
+  console.log(`findArgs: ${JSON.stringify(findArgs)}`);
 
   Product.find(findArgs)
     .populate('writer')
