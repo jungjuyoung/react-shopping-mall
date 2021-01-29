@@ -7,6 +7,7 @@ import ImageSlider from '../../utils/ImageSlider';
 import CheckBox from './Sections/CheckBox';
 import RadioBox from './Sections/RadioBox';
 import { continents, price } from './Sections/Datas';
+import SearchFeature from './Sections/SearchFeature';
 
 function LandingPage() {
   const [Products, setProducts] = useState([]);
@@ -130,6 +131,8 @@ function LandingPage() {
       <Row gutter={[16, 16]}>{renderCards}</Row>
 
       {/* search */}
+      <SearchFeature />
+
       {/* cards */}
       <div
         style={{
