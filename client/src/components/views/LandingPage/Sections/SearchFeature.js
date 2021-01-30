@@ -1,17 +1,22 @@
-import React from 'react';
-import { Input } from 'antd';
-import {Search} = Input;
+import React, { useState } from 'react';
+import { Input, Space } from 'antd';
 
-function SearchFeature() {
-  const onSearch = (e) => {};
+const { Search } = Input;
+
+function SearchFeature(props) {
+  const [serachTerm, setSerachTerm] = useState('');
+  const onSearch = (e) => {
+    setSerachTerm(e.currentTarget.value);
+    props.refreshFunction(e.currentTarget.value);
+  };
+
   return (
     <div>
       <Search
+        style={{ width: 200 }}
         placeholder="input search text"
-        allowClear
-        enterButton="Search"
-        size="large"
         onSearch={onSearch}
+        value={serachTerm}
       />
     </div>
   );

@@ -18,6 +18,7 @@ function LandingPage() {
     continents: [],
     price: [],
   });
+  const [SearchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     let body = {
@@ -97,6 +98,10 @@ function LandingPage() {
     setFilters(newFilters);
   };
 
+  const updateSearchTerm = (newSearchTerm) => {
+    SearchTerm(newSearchTerm);
+  };
+
   return (
     <div
       style={{
@@ -128,10 +133,18 @@ function LandingPage() {
         </Col>
       </Row>
 
-      <Row gutter={[16, 16]}>{renderCards}</Row>
-
       {/* search */}
-      <SearchFeature />
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'flex-end',
+          margin: '1rem auto',
+        }}
+      >
+        <SearchFeature refreshFunction={updateSearchTerm} />
+      </div>
+
+      <Row gutter={[16, 16]}>{renderCards}</Row>
 
       {/* cards */}
       <div
