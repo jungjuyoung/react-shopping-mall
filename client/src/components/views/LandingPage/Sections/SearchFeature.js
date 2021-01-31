@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { Input, Space } from 'antd';
+import { Input } from 'antd';
 
 const { Search } = Input;
 
 function SearchFeature(props) {
-  const [serachTerm, setSerachTerm] = useState('');
-  const onSearch = (e) => {
-    setSerachTerm(e.currentTarget.value);
+  const [SearchTerms, setSearchTerms] = useState('');
+
+  const onChangeSearch = (e) => {
+    setSearchTerms(e.currentTarget.value);
     props.refreshFunction(e.currentTarget.value);
   };
 
@@ -15,8 +16,8 @@ function SearchFeature(props) {
       <Search
         style={{ width: 200 }}
         placeholder="input search text"
-        onSearch={onSearch}
-        value={serachTerm}
+        onChange={onChangeSearch}
+        value={SearchTerms}
       />
     </div>
   );

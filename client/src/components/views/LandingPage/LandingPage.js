@@ -18,7 +18,7 @@ function LandingPage() {
     continents: [],
     price: [],
   });
-  const [SearchTerm, setSearchTerm] = useState('');
+  const [SearchTerms, setSearchTerms] = useState('');
 
   useEffect(() => {
     let body = {
@@ -99,7 +99,15 @@ function LandingPage() {
   };
 
   const updateSearchTerm = (newSearchTerm) => {
-    SearchTerm(newSearchTerm);
+    let body = {
+      Skip: 0,
+      limit: Limit,
+      filters: Filters,
+      searchTerm: newSearchTerm,
+    };
+    setSkip(0);
+    setSearchTerms(newSearchTerm);
+    getProducts(body);
   };
 
   return (
