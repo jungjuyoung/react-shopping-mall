@@ -25,6 +25,7 @@ function ProductInfo(props) {
       </Descriptions>
       <br />
       <br />
+      <br />
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Button size="large" shape="round" type="danger" onClick={clickHandler}>
           Add to cart

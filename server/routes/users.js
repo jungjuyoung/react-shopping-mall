@@ -18,6 +18,8 @@ router.get('/auth', auth, (req, res) => {
     lastname: req.user.lastname,
     role: req.user.role,
     image: req.user.image,
+    cart: req.user.cart,
+    history: req.user.history,
   });
 });
 
@@ -73,6 +75,8 @@ router.post('/addToCart', auth, (req, res) => {
   // User Collection에 해당 유저의 정보를 가져오기
   User.findOne({ _id: req.user._id }, (err, userInfo) => {
     // 가져온 정보에서 카트에다 넣으려 하는 상품이 이미 들어있는지 확인
+    console.log(userInfo);
+
     let duplicate = false;
     userInfo.cart.forEach((item) => {
       if (item.id === req.body.productId) {
@@ -97,13 +101,17 @@ router.post('/addToCart', auth, (req, res) => {
         { _id: req.user._id },
         {
           $push: {
-            cart: { id: req.body.productId, quantity: 1, date: Date.now() },
+            cart: {
+              id: req.query.productId,
+              quantity: 1,
+              date: Date.now(),
+            },
           },
         },
         { new: true },
         (err, userInfo) => {
           if (err) return res.status(400).json({ success: false, err });
-          return res.status(200).send(userInfo.cart);
+          res.status(200).send(userInfo.cart);
         }
       );
     }
