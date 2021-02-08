@@ -75,7 +75,13 @@ router.post('/addToCart', auth, (req, res) => {
   // User Collection에 해당 유저의 정보를 가져오기
   User.findOne({ _id: req.user._id }, (err, userInfo) => {
     // 가져온 정보에서 카트에다 넣으려 하는 상품이 이미 들어있는지 확인
-    console.log(userInfo);
+    console.log(
+      `userInfo:${JSON.stringify(userInfo)},req.user._id:${JSON.stringify(
+        req.user._id
+      )},req.user:${JSON.stringify(req.user)}, req.body:${JSON.stringify(
+        req.body
+      )}`
+    );
 
     let duplicate = false;
     userInfo.cart.forEach((item) => {

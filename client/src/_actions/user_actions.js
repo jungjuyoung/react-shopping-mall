@@ -53,6 +53,8 @@ export function logoutUser() {
 }
 
 export function addToCart(id) {
+  console.log(`user_actions addToCart(id: ${id}`);
+
   let body = {
     productID: id,
   };
